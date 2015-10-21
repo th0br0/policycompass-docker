@@ -18,8 +18,9 @@ RUN ln -sfT /usr/bin/nodejs /usr/bin/node
 
 # Check out policycompass
 USER pcapp
+WORKDIR $HOME
 RUN git clone https://github.com/policycompass/policycompass.git policycompass
-WORKDIR policycompass
+WORKDIR $HOME/policycompass
 
 # Install policycompass dependencies 
 RUN make update_repros test_install frontend_install postgres_init services_install fcmmanager_install select_nginx_config
