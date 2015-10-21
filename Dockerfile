@@ -1,17 +1,9 @@
-FROM phusion/baseimage:14.04
+FROM elasticsearch
 
 MAINTAINER Andreas C. Osowski "andreas.osowski@fokus.fraunhofer.de"
 
 # Install software 
 RUN apt-get install -y git python-virtualenv python-pip supervisor
-
-# Install Java
-RUN apt-get update -y                             && \
-    apt-get install python-software-properties -y && \
-    add-apt-repository ppa:webupd8team/java -y    && \
-    apt-get update -y                             && \
-    apt-get install oracle-java8-installer -y     && \
-    oracle-java8-set-default
 
 # Check out policycompass
 ENV POLICYCOMPASS_DIR /opt/policycompass
