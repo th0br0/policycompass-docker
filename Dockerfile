@@ -6,6 +6,9 @@ EXPOSE 9900
 EXPOSE 1080
 EXPOSE 3000
 
+# Add user
+RUN useradd -ms /bin/bash pcapp
+
 # Install software 
 RUN apt-get update
 RUN apt-get install -y git supervisor
@@ -15,12 +18,10 @@ RUN apt-get install -y maven tomcat7 libxml2 libxslt1.1 libzip2 python3 python3-
     postgresql ruby-compass
 
 # Check out policycompass
-ENV POLICYCOMPASS_DIR /opt/policycompass
-RUN mkdir ${POLICYCOMPASS_DIR}
-WORKDIR ${POLICYCOMPASS_DIR}
+USER pcapp
 
 RUN git clone https://github.com/policycompass/policycompass.git policycompass
-WORKDIR ${POLICYCOMPASS_DIR}/policycompass
+WORKDIR policycompass
 
 # Install policycompass dependencies 
 RUN make /usr/bin/node
