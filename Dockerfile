@@ -2,12 +2,16 @@ FROM elasticsearch
 
 MAINTAINER Andreas C. Osowski "andreas.osowski@fokus.fraunhofer.de"
 
+EXPOSE 9900
+EXPOSE 1080
+EXPOSE 3000
+
 # Install software 
 RUN apt-get update
-RUN apt-get install -y git python-virtualenv python-pip supervisor
+RUN apt-get install -y git supervisor
 
 RUN apt-get install -y maven tomcat7 libxml2 libxslt1.1 libzip2 python3 python3-pil python3-pip python-virtualenv python3-ipdb python3-pep8 pyflakes sqlite build-essential zlibc \
-    curl file git ruby ruby-dev nodejs npm openjdk-7-jdk phantomjs supervisor nginx \
+    curl file git ruby ruby-dev nodejs npm supervisor nginx \
     postgresql ruby-compass
 
 # Check out policycompass
